@@ -1,4 +1,5 @@
 from . import j 
+from pathlib import Path
 
 
 def _assert_valid_value(o):
@@ -32,3 +33,13 @@ class Storage:
         a = self.get(file_name, [])
         a.append(o)
         self.save(file_name, a)
+
+    def folders_in(self, path):
+        folders = []
+        
+        for item in Path(self._path(path)).iterdir():
+            if item.is_dir():
+                folders.append(item.name)
+        
+        return folders
+
