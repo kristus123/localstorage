@@ -32,11 +32,20 @@ class Storage:
 
 
 
-    def extend(self, file_name, array_to_append):
-        _assert_valid_value(array_to_append)
+    def extend(self, file_name, obj):
+        _assert_valid_value(obj)
 
         cached_array = self.get(file_name, [])
-        cached_array.extend(array_to_append)
+        print("___")
+        print(cached_array)
+        print("___")
+
+        if isinstance(obj, list):
+            print("obj is a list")
+            cached_array.extend(obj)
+        else:
+            print("obj is NOT a list!!!!!!")
+            cached_array.append(obj)
 
         self.save(file_name, cached_array)
 
