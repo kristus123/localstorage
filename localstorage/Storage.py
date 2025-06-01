@@ -27,12 +27,18 @@ class Storage:
         j.save(self._path(file_name), data)
 
 
-    def append(self, file_name, o):
-        _assert_valid_value(o)
+    def clear_list(self, file_name):
+        self.save(file_name, [])
 
-        a = self.get(file_name, [])
-        a.append(o)
-        self.save(file_name, a)
+
+
+    def extend(self, file_name, array_to_append):
+        _assert_valid_value(array_to_append)
+
+        cached_array = self.get(file_name, [])
+        cached_array.extend(array_to_append)
+
+        self.save(file_name, cached_array)
 
     def folders_in(self, path):
         folders = []
