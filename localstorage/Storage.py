@@ -36,17 +36,18 @@ class Storage:
         _assert_valid_value(obj)
 
         cached_array = self.get(file_name, [])
-        print("___")
-        print(cached_array)
-        print("___")
 
         if isinstance(obj, list):
-            print("obj is a list")
             cached_array.extend(obj)
         else:
-            print("obj is NOT a list!!!!!!")
             cached_array.append(obj)
 
+        self.save(file_name, cached_array)
+
+    def append(self, file_name, obj):
+        _assert_valid_value(obj)
+        cached_array = self.get(file_name, [])
+        cached_array.append(obj)
         self.save(file_name, cached_array)
 
     def folders_in(self, path):
