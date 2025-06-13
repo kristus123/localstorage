@@ -19,6 +19,10 @@ class Storage:
         _assert_valid_value(default)
 
         return j.get(self._path(file_name), default)
+    
+
+    def exists(self, file_name):
+        return Path(self._path(file_name)).exists()
 
 
     def save(self, file_name, data):
