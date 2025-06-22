@@ -11,6 +11,7 @@ class Storage:
     def __init__(self, base_path="./"):
         self.base_path = base_path
 
+
     def _path(self, file_name):
         return self.base_path + "localstorage/" + file_name
 
@@ -62,4 +63,17 @@ class Storage:
                 folders.append(item.name)
         
         return folders
+
+
+    def all_files(self, filename=None):
+        files = []
+
+
+        x = self.base_path + "localstorage/"
+        for i in Path(x).rglob("*"):
+            if i.is_file():
+                if filename is None or i.name == filename:
+                    files.append(i)
+
+        return files
 
