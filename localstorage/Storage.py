@@ -68,7 +68,6 @@ class Storage:
     def all_files(self, filename=None):
         files = []
 
-
         x = self.base_path + "localstorage/"
         for i in Path(x).rglob("*"):
             if i.is_file():
