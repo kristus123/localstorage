@@ -9,15 +9,8 @@ def _assert_valid_value(o):
 
 
 class Storage:
-    def __init__(self, base_path="./", keep_in_package=False):
-
-        assert base_path.endswith("/")
-
-        if keep_in_package:
-            package_directory = os.path.dirname(__file__)
-            self.base_path = os.path.abspath(os.path.join(package_directory, base_path))
-        else:
-            self.base_path = base_path
+    def __init__(self, base_path="./"):
+        self.base_path = base_path
 
 
     def _path(self, file_name):
