@@ -50,11 +50,24 @@ class Storage:
 
         self.save(file_name, cached_array)
 
-    def append(self, file_name, obj):
+
+    def append(self, file_name, obj): # rename to append_to_list?
         _assert_valid_value(obj)
+
         cached_array = self.get(file_name, [])
         cached_array.append(obj)
         self.save(file_name, cached_array)
+
+
+    def append_key_to_dict(self, file_name, key, value):
+        _assert_valid_value(key)
+        _assert_valid_value(value)
+
+        cached_dict = self.get(file_name, {})
+        cached_dict[key] = value
+
+        self.save(file_name, cached_dict)
+
 
     def folders_in(self, path):
         folders = []
