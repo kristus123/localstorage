@@ -13,24 +13,29 @@ class Storage:
         self.base_path = base_path
 
 
-    def _path(self, file_name):
+    def _folder_path(self, file_name):
         return self.base_path + "localstorage/" + file_name
+
+    def _file_path(self, file_name):
+        return self.base_path + "localstorage/" + file_name + ".json"
 
 
     def get(self, file_name, default):
         _assert_valid_value(default)
 
-        return j.get(self._path(file_name), default)
+        return j.get(self._file_path(file_name), default)
     
 
-    def exists(self, file_name):
-        return Path(self._path(file_name)).exists()
+    def file_exists(self, file_name):
+        p = self._file_path(file_name)
+        print(p)
+        return Path(p).exists()
 
 
     def save(self, file_name, data):
         _assert_valid_value(data)
 
-        j.save(self._path(file_name), data)
+        j.save(self._file_path(file_name), data)
 
 
     def clear_list(self, file_name):
@@ -72,7 +77,7 @@ class Storage:
     def folders_in(self, path):
         folders = []
         
-        for item in Path(self._path(path)).iterdir():
+        for item in Path(self._folder_path(path)).iterdir():
             if item.is_dir():
                 folders.append(item.name)
         
@@ -85,7 +90,7 @@ class Storage:
         x = self.base_path + "localstorage/"
         for i in Path(x).rglob("*"):
             if i.is_file():
-                if filename is None or i.name == filename:
+                if filename == None or i.name == filename:
                     files.append(i)
 
         return files
