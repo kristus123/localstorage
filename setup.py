@@ -1,8 +1,8 @@
-# put this code in setup.py
 from setuptools import setup, find_packages
 
+
 with open('requirements.txt') as f:
-    requirements = f.read().splitlines()
+    requirements = [r for r in f.read().splitlines() if "-e " not in r]
 
 setup(
     name='localstorage',
