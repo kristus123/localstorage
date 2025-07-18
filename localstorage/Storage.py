@@ -1,6 +1,5 @@
 from . import j 
 from pathlib import Path
-import os
 
 
 def _assert_valid_value(o):
